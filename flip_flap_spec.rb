@@ -2,7 +2,7 @@
 
 require 'minitest/autorun'
 require 'minitest/rg'
-
+require 'yaml'
 require_relative 'flip_flap'
 
 YML_DATA = File.read('data/survey.yml')
