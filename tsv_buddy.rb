@@ -3,16 +3,32 @@ module TsvBuddy
   # take_tsv: converts a String with TSV data into @data
   # parameter: tsv - a String in TSV format
   def take_tsv(tsv)
-    @data = tsv
+    @data = []
+    tsv = tsv.split(/\n/)
+    @title = tsv[0].split(/\t/)
+    1.upto tsv.length - 1 do |i|
+      tsv_line = tsv[i].split(/\t/)
+      @data << tsv_to_hash(tsv_line)
+    end
   end
 
-  def to_tsv
-    yaml_to_tsv = ''
-    yaml_to_tsv += "#{tsv_title(@data)}\n"
-    @data.each do |datas|
-      yaml_to_tsv += "#{hash_to_tsv(datas)}\n"
+  def tsv_to_hash(tsv_line)
+    hash = {}
+    0.upto @title.length - 1 do |j|
+      hash[@title[j]] = tsv_line[j]
     end
-    yaml_to_tsv
+    hash
+  end
+  # to_tsv: converts @data into tsv string
+  # returns: String in TSV format
+
+  def to_tsv
+    data_s = ''
+    data_s += "#{tsv_title(@data)}\n"
+    @data.each do |datas|
+      data_s += "#{hash_to_tsv(datas)}\n"
+    end
+    data_s
   end
 
   def tsv_title(yml_datas)

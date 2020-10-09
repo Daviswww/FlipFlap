@@ -7,14 +7,15 @@ module YamlBuddy
   end
 
   def to_yaml
-    tsv_to_yaml = []
-    tsv = @data.split(/\n/)
-    @title = tsv[0].split(/\t/)
-    1.upto tsv.length - 1 do |i|
-      tsv_line = tsv[i].split(/\t/)
-      tsv_to_yaml << tsv_to_hash(tsv_line)
-    end
-    tsv_to_yaml.to_yaml
+    # tsv_to_yaml = []
+    # tsv = @data.split(/\n/)
+    # @title = tsv[0].split(/\t/)
+    # 1.upto tsv.length - 1 do |i|
+    #   tsv_line = tsv[i].split(/\t/)
+    #   tsv_to_yaml << tsv_to_hash(tsv_line)
+    # end
+    # tsv_to_yaml.to_yaml
+    @data.to_yaml
   end
 
   def tsv_to_hash(tsv_line)
