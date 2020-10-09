@@ -1,1 +1,0 @@
-File.write('tsv_filename.tsv', t)
